@@ -5,6 +5,7 @@
 ############# Functions
 .text
 
+#########################################
 # Function memcpy
 # Copies 1 chunk of memory to another.
 # Args (In order of being pushed to stack):
