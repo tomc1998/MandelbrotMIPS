@@ -11,9 +11,7 @@
 # 1  = light pixel
 # 2  = dark pixel
 # >2 = dark as possible
-.eqv FRAMEBUFFER_WIDTH  80
-.eqv FRAMEBUFFER_HEIGHT 40
-.eqv FRAMEBUFFER_SIZE   3200 # this is width * height
+.include "macros.s"
 .globl framebuffer
 framebuffer:
   .space FRAMEBUFFER_SIZE
@@ -24,7 +22,7 @@ line:
   .space FRAMEBUFFER_WIDTH
   .asciiz "\n"
 
-############# Public functions
+############# Functions
 .text
 
 #########################################

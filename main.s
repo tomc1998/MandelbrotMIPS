@@ -2,9 +2,9 @@
 str:  .asciiz "Hello, world!\n"
 dest: .space  128
 ar: .float 1.0
-ai: .float 1.0
-br: .float 2.0
-bi: .float 1.0
+ai: .float 0.0
+br: .float -1.0
+bi: .float 0.0
 
 .text
 
@@ -13,6 +13,8 @@ bi: .float 1.0
 # Entry point to program
 .globl main
 main:
+
+  jal mandelbrot
 
   li $t0, 2
   la $t1, framebuffer
@@ -29,12 +31,21 @@ main:
   addi $sp, $sp, -8
   s.s $f4, 4($sp)   # Breal
   s.s $f5, 0($sp)   # Bimag
-  jal complex_sq
+  jal does_diverge
   addi $sp, $sp, 8
-  li $v0, 2
-  mov.s $f12, $f0
+  move $a0, $v0
+  li $v0, 1
   syscall
-  mov.s $f12, $f1
+  l.s $f4, br
+  l.s $f5, bi
+  # Push values onto stack
+  addi $sp, $sp, -8
+  s.s $f4, 4($sp)   # Breal
+  s.s $f5, 0($sp)   # Bimag
+  jal does_diverge
+  addi $sp, $sp, 8
+  move $a0, $v0
+  li $v0, 1
   syscall
 
   li $v0, 10

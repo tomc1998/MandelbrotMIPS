@@ -2,6 +2,12 @@
 # This file contains utility functions
 #############
 
+############# Constants
+.data
+
+.globl fpzero
+fpzero: .float 0.0
+
 ############# Functions
 .text
 

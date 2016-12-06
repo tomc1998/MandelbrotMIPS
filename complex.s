@@ -79,6 +79,23 @@ complex_sq:
   addi $sp, $sp, 4
   jr $ra
   
+#########################################
+# Function complex_mod_sq
+# Computes the square of the modulus of a given complex number
+# Args: 
+# 4b (Floating point real part)
+# 4b (Floating point imag part)
+# Returns:
+# f0 = mod^2
+.globl complex_mod_sq
+complex_mod_sq:
+  l.s $f4, 4($sp)
+  l.s $f5, 0($sp)
+  mul.s $f6, $f4, $f4
+  mul.s $f7, $f5, $f5
+  add.s $f0, $f6, $f7
+  jr $ra
+  
   
   
   
