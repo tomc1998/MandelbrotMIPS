@@ -109,8 +109,8 @@ ascii_art_encode_line:
   aael_loop:
     lb  $t6, 0($t0)
     beq $t3, $t6, aael_blank
-    beq $t3, $t6, aael_light
-    beq $t3, $t6, aael_dark
+    beq $t4, $t6, aael_light
+    beq $t5, $t6, aael_dark
     j aael_black
     aael_blank:
       li $t6, BLANK_PIXEL_SYM
@@ -139,19 +139,3 @@ ascii_art_encode_line:
   ascii_art_encode_line_exit:
   jr $ra
     
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 

@@ -14,7 +14,7 @@ newline: .asciiz "\n"
 x_index_increment: .float 0.03
 y_index_increment: .float 0.05
 # Start of the incrementation for plotting the mandelbrot set
-x_index_start: .float -1.5
+x_index_start: .float -3.0
 y_index_start: .float -1.5
 
 ############# Functions
@@ -29,7 +29,6 @@ y_index_start: .float -1.5
 # 4b (Floating point imag part of c)
 # Returns: 
 # v0 = Number of iterations taken to diverge, or 0 if doesn't
-.eqv NUM_ITERATIONS 100
 .globl does_diverge
 does_diverge:
   # Save $ra, $s0, $s1, $f20 to $f23 on stack
@@ -144,7 +143,10 @@ mandelbrot:
       add $t0, $t0, $s0
       la $t1, framebuffer
       add $t1, $t1, $t0
-      sb $v0, 0($t1)
+      li $t0, 2
+      div $v0, $t0
+      mflo $t0
+      sb $t0, 0($t1)
 
       # Increment x indexes
       li $t0, FRAMEBUFFER_WIDTH
